@@ -1,10 +1,34 @@
-import React from 'React'
+import React from 'react'
+import {SideNav, Button, SideNavItem} from 'react-materialize'
+import ManifestNavbar from './ManifestNavbar'
+import '../styles/ManifestContainer.css'
 
 class ManifestContainer extends React.Component {
 
   render(){
-    return ()
+    return (
+      <div>
+        <ManifestNavbar />
+        <div className='collectionsGrid'>
+          <div className='cool'>
+            hi
+          </div>
+          <div className='cool'>
+            hi
+          </div>
+          <div className='cool'>
+            hi
+          </div>
+          <div className='cool'>
+            hi
+          </div>
+          <div className='cool'>
+            hi
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 
-export ManifestContainer
+export default ManifestContainer
