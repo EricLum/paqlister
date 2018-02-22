@@ -1,0 +1,13 @@
+.draggable-area {
+  height: 500px;
+  position: relative;
+  /*overflow: auto;*/
+  padding: 0;
+  background-color: green;
+}
+
+.box{
+  background-color: blue;
+  height: 100px;
+  width: 100px;
+}
