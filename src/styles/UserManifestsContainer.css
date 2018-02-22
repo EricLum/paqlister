@@ -1,13 +1,32 @@
-.draggable-area {
-  height: 500px;
-  position: relative;
-  /*overflow: auto;*/
-  padding: 0;
+.parentContainer {
   background-color: green;
+  display: grid;
+  grid-template-columns: 300px auto 10%;
+  grid-template-rows: 15% auto 15%;
 }
 
-.box{
-  background-color: blue;
-  height: 100px;
-  width: 100px;
+.buttonsContainer {
+  grid-row: 3/4;
+  grid-column: 1/4;
+}
+
+.buttonsRow {
+  display: grid;
+  grid-column: (auto, repeat(3));
+  grid-row: auto;
+}
+.controlButton {
+  width: 300px;
+  margin: 0 auto;
+}
+.saveButton {
+grid-column: 1/2
+}
+
+.shareButton {
+  grid-column: 2/3;
+}
+
+.resetButton {
+  grid-column: 3/4;
 }

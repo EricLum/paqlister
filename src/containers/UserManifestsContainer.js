@@ -1,34 +1,32 @@
 //Container for showing all of the collections a user has or packs.
 import React from 'react'
 import UserManifestsNavbar from './UserManifestsNavbar'
-import Draggable from 'react-draggable'
+import ItemWrapper from '../components/ItemWrapper'
 import '../styles/UserManifestsContainer.css'
+import {Button} from 'react-materialize'
 class UserManifestsContainer extends React.Component {
 
   render(){
-    console.log(this.state)
+    let item = <ItemWrapper />
     return (
       <div>
-        <UserManifestsNavbar />
-
-        <div className="box" style={{height: '800px', width: '1200px', position: 'relative' , padding: '0'}}>
-           <div style={{height: '750px', width: '1100px', padding: '10px'}}>
-             <Draggable bounds="parent">
-               <div className="box">
-                 I can only be moved within my offsetParent.<br /><br />
-                 Both parent padding and child margin work properly.
-               </div>
-             </Draggable>
-             <Draggable bounds="parent">
-               <div className="box">
-                 I also can only be moved within my offsetParent.<br /><br />
-                 Both parent padding and child margin work properly.
-               </div>
-             </Draggable>
+        <div className="parentContainer">
+          <UserManifestsNavbar />
+          <div>
+             <div style={{height: '750px', width: '1100px', padding: '10px'}}>
+               {item}
+             </div>
            </div>
-         </div>
-
+           <div className='buttonsContainer'>
+             <div className='buttonsRow'>
+               <Button className='controlButton saveButton'>Save</Button>
+               <Button className='controlButton shareButton'>Share</Button>
+               <Button className='controlButton resetButton'>Reset</Button>
+             </div>
+          </div>
+          </div>
       </div>
+
     )
   }
 }
