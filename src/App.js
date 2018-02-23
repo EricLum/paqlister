@@ -8,7 +8,7 @@ import UserManifestsContainer from './containers/UserManifestsContainer'
 import ManifestContainer from './containers/ManifestContainer'
 import {Row, Col, Card,Icon} from 'react-materialize'
 import BasicLayout from './BasicLayout'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -50,13 +50,13 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <div>
-            {/* <Route path='/test' render={test} /> */}
-            {/* <Route path='/' render={Home}/> */}
+          <Switch>
+            <Route path='/test' render={test} />
+            <Route exact path='/' render={Home}/>
             {/* login, signup, my packlists */}
             <Route path='/mycollections' render={manageManifests} />
-            {/* <Route path='/collections' render={editCollection} /> */}
-          </div>
+            <Route path='/collections' render={editCollection} />
+          </Switch>
         </Router>
       </div>
     );

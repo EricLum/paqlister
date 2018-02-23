@@ -1,6 +1,9 @@
 import React from 'react'
 import '../styles/ItemWrapper.css'
 import Draggable from 'react-draggable'
+import { bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import {addItem} from '../actions/actions'
 class ItemWrapper extends React.Component {
 
   state = {
@@ -26,4 +29,10 @@ class ItemWrapper extends React.Component {
   }
 }
 
-export default ItemWrapper
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addItem
+  }, dispatch)
+}
+
+export default connect(null,)(ItemWrapper)
