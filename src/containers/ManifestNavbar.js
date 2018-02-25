@@ -3,6 +3,8 @@ import {SideNav, SideNavItem, Button} from 'react-materialize'
 
 class ManifestNavbar extends React.Component {
 
+  
+
   render (){
     return( <SideNav
       	trigger={<Button>Show Menu</Button>}>
