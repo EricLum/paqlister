@@ -5,9 +5,10 @@ export default function myReducer(
   switch (action.type){
     case 'ADD_MANIFEST':
       let currentManifest = state.manifests.slice();
+      debugger
       currentManifest.push(action.manifest)
       return Object.assign({}, state, {manifests: currentManifest})
-    case 'GET_MANIFESTS':
+    case 'GET_MANIFEST':
       let currentManifests = state.manifests.slice();
       currentManifests = action.manifests
       return Object.assign({},state, {manifests: currentManifests})

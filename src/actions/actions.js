@@ -28,6 +28,13 @@ export function loadInitialManifest(manifests){
   }
 }
 
+export function onChangeNewManifest(manifestFormData){
+  return {
+    type: 'CHANGE_MANIFEST',
+    manifestFormData
+  }
+}
+
 export function setCollection(){
   return {
     type:'SET_COLLECTION'
@@ -98,7 +105,7 @@ export function manifestPostData(url, manifest) {
     .then((response) => response.json())
     .then( (json) => dispatch({
       type: 'ADD_MANIFEST',
-      manifest
+      manifest: json
     }))
   };
 }
@@ -109,7 +116,7 @@ export function getManifestData(url){
     .then( (response) => {
       return response
     }).then((response) => response.json())
-    .then( (json) => json.map( (manifest) => dispatch(addManifest(manifest))))
+    .then( (json) => dispatch(loadInitialManifest(json)))
   }
 }
 //

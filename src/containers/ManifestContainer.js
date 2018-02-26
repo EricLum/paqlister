@@ -9,14 +9,25 @@ import {bindActionCreators} from 'redux'
 
 class ManifestContainer extends React.Component {
 
+  state = {
+    title: '',
+    limit: '',
+    description: '',
+    user_id: 10
+  }
+
+  handleOnChange = (e) => {
+    console.log(this.state)
+    this.state[e.target.name] = e.target.value
+  }
+
   handleOnSave = (event) => {
-    let item = {title: 'sample title', limit: 20, description: 'test', user_id: 10}
     event.preventDefault()
-    this.props.manifestPostData('http://localhost:3001/api/v1/manifests',item)
+    this.props.manifestPostData('http://localhost:3001/api/v1/manifests', this.state)
   }
 
   componentDidMount(){
-    let loadedItems = this.props.getManifestData('http://localhost:3001/api/v1/manifests')
+   this.props.getManifestData('http://localhost:3001/api/v1/manifests')
   }
 
   render(){
@@ -28,10 +39,11 @@ class ManifestContainer extends React.Component {
           {manifestContainers}
           <form onSubmit={this.handleOnSave}>
             <label>Create a new container item</label>
-            <input type='text' placeholder='Title'></input>
-            <input type='text' placeholder='limit'></input>
-            <input type='text' placeholder='description'></input>
-            <input type='submit' placeholder='submit'></input>
+            <input name='title' type='text' onChange={this.handleOnChange} placeholder='Title'></input>
+            <input name='limit' type='text' onChange={this.handleOnChange} placeholder='Limit'></input>
+            <input name='description' type='text' onChange={this.handleOnChange} placeholder='description'></input>
+            <input type='text' value='10' name='user_id' placeholder='user_id'></input>
+            <input type='submit' name='submit' placeholder='submit'></input>
           </form>
         </div>
       </div>
