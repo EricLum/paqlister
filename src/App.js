@@ -20,7 +20,7 @@ const Home = () => {
   )
 }
 
-const editCollection = () => {
+const editCollection = (items) => {
   return (
     <div>
       <UserManifestsContainer />
@@ -55,7 +55,7 @@ class App extends Component {
 
             {/* login, signup, my packlists */}
             <Route path='/mycollections' render={manageManifests} />
-            <Route path='/collections' render={editCollection} />
+            <Route path='/collections/:id' render={editCollection} />
             <Route exact path='/' render={Home}/>
           </Switch>
         </Router>

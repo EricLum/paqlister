@@ -7,6 +7,7 @@ import {Button} from 'react-materialize'
 class UserManifestsContainer extends React.Component {
 
   render(){
+    debugger
     let item = <ItemWrapper />
     return (
       <div>

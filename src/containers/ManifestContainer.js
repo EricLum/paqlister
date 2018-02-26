@@ -31,7 +31,9 @@ class ManifestContainer extends React.Component {
   }
 
   render(){
-    let manifestContainers = this.props.manifests.map( (manifest) => <ManifestContainerItem key={manifest.id} name={manifest.title} limit={manifest.limit} description={manifest.description} user={manifest.user} />)
+
+    let manifestContainers = this.props.manifests.map( (manifest) => <ManifestContainerItem key={manifest.id} unique_id={manifest.id} title={manifest.title} limit={manifest.limit} description={manifest.description} user={manifest.user_id} />)
+
     return (
       <div>
         <ManifestNavbar />
