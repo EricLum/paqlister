@@ -52,10 +52,11 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path='/test' render={test} />
-            <Route exact path='/' render={Home}/>
+
             {/* login, signup, my packlists */}
             <Route path='/mycollections' render={manageManifests} />
             <Route path='/collections' render={editCollection} />
+            <Route exact path='/' render={Home}/>
           </Switch>
         </Router>
       </div>
