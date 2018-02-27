@@ -20,21 +20,6 @@ const Home = () => {
   )
 }
 
-const editCollection = (items) => {
-  return (
-    <div>
-      <UserManifestsContainer />
-    </div>
-  )
-}
-
-const manageManifests = () => {
-  return(
-    <div>
-      <ManifestContainer />
-    </div>
-  )
-}
 
 const test = () => {
   return (
@@ -54,8 +39,7 @@ class App extends Component {
             <Route path='/test' render={test} />
 
             {/* login, signup, my packlists */}
-            <Route path='/mycollections' render={manageManifests} />
-            <Route path='/collections/:id' render={editCollection} />
+            <Route path='/manifests' component={ManifestContainer} />
             <Route exact path='/' render={Home}/>
           </Switch>
         </Router>

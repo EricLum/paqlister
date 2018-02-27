@@ -1,13 +1,19 @@
 import React from 'react'
 import {SideNav, Button, SideNavItem} from 'react-materialize'
-import ManifestNavbar from './ManifestNavbar'
-import '../styles/ManifestContainer.css'
-import ManifestContainerItem from './ManifestContainerItem'
+import {Route, Switch, Link} from 'react-router-dom'
 import { connect } from 'react-redux'
-import { manifestPostData, getManifestData} from '../actions/actions'
 import {bindActionCreators} from 'redux'
+import { manifestPostData, getManifestData} from '../actions/actions'
+import ManifestNavbar from './ManifestNavbar'
+import ManifestContainerItem from './ManifestContainerItem'
+import UserManifestsContainer from './UserManifestsContainer'
+import '../styles/ManifestContainer.css'
 
 class ManifestContainer extends React.Component {
+
+  constructor(props){
+    super(props)
+  }
 
   state = {
     title: '',
@@ -24,6 +30,12 @@ class ManifestContainer extends React.Component {
   handleOnSave = (event) => {
     event.preventDefault()
     this.props.manifestPostData('http://localhost:3001/api/v1/manifests', this.state)
+    this.setState({
+      title: '',
+      limit: '',
+      description: '',
+      user_id: 10
+    })
   }
 
   componentDidMount(){
@@ -32,36 +44,32 @@ class ManifestContainer extends React.Component {
 
   render(){
 
-    let manifestContainers = this.props.manifests.map( (manifest) => <ManifestContainerItem key={manifest.id} unique_id={manifest.id} title={manifest.title} limit={manifest.limit} description={manifest.description} user={manifest.user_id} />)
+    const manifestContainers = this.props.manifests.map( (manifest) =>
+      <Link key={manifest.id} to={`/manifests/${manifest.id}`}>
+        <ManifestContainerItem  unique_id={manifest.id} title={manifest.title} limit={manifest.limit} description={manifest.description} user={manifest.user_id} />
+      </Link>
+     )
 
     return (
       <div>
         <ManifestNavbar />
-        <div className='collectionsGrid'>
-          {manifestContainers}
-          <form onSubmit={this.handleOnSave}>
-            <label>Create a new container item</label>
-            <input name='title' type='text' onChange={this.handleOnChange} placeholder='Title'></input>
-            <input name='limit' type='text' onChange={this.handleOnChange} placeholder='Limit'></input>
-            <input name='description' type='text' onChange={this.handleOnChange} placeholder='description'></input>
-            <input type='text' value='10' name='user_id' placeholder='user_id'></input>
-            <input type='submit' name='submit' placeholder='submit'></input>
-          </form>
+            <Switch>
+            <Route exact path='/manifests' render={ () => <div className='collectionsGrid'>
+              {manifestContainers}
+                <form onSubmit={this.handleOnSave}>
+                   <label>Create a new container item</label>
+                   <input name='title' type='text' onChange={this.handleOnChange} placeholder='Title'></input>
+                   <input name='limit' type='text' onChange={this.handleOnChange} placeholder='Limit'></input>
+                   <input name='description' type='text' onChange={this.handleOnChange} placeholder='description'></input>
+                   <input type='text' value='10' name='user_id' placeholder='user_id'></input>
+                   <input type='submit' name='submit' placeholder='submit'></input>
+                 </form></div>} />
+            <Route path={`manifests/:manifestId`}
+             component={UserManifestsContainer}/>
+          </Switch>
         </div>
-      </div>
     )
   }
-}
-
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({
-//     manifestPostData,
-//     getManifestData
-//   }, dispatch)
-// }
-
-const mapStateToProps = ({manifestsReducer}) => {
-  return {...manifestsReducer}
 }
 
 export default connect( ({manifestsReducer}) =>({...manifestsReducer}),{ manifestPostData, getManifestData} )(ManifestContainer)

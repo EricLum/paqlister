@@ -4,13 +4,16 @@ import UserManifestsNavbar from './UserManifestsNavbar'
 import ItemWrapper from '../components/ItemWrapper'
 import '../styles/UserManifestsContainer.css'
 import {Button} from 'react-materialize'
+import { connect } from 'react-redux'
+
 class UserManifestsContainer extends React.Component {
 
   render(){
-    debugger
+    console.log('look im here')
     let item = <ItemWrapper />
     return (
       <div>
+        hi
         <div className="parentContainer">
           <UserManifestsNavbar />
           <div>
@@ -32,4 +35,14 @@ class UserManifestsContainer extends React.Component {
   }
 }
 
-export default UserManifestsContainer
+const mapStateToProps = (state, ownProps) => {
+  //get all the items
+//   const items = state.items.find(items => item.id == ownProps.match.params.itemId)
+// if (item) {
+//   return {item}
+// } else {
+//   return {movie: {}}
+// }
+}
+
+export default connect()(UserManifestsContainer)
