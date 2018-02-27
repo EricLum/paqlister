@@ -119,9 +119,26 @@ export function getManifestData(url){
     .then( (json) => dispatch(loadInitialManifest(json)))
   }
 }
-//
-// export function getAllManifests(url) {
-//   return (dispatch) => {
-//
-//   }
-// }
+
+export function loadManifestItems(url, manifestId){
+  let headers = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+    manifestId
+    })
+  }
+  return (dispatch) => {
+    fetch(url,headers)
+    .then( (response) => {
+      return response
+    }).then((response) => response.json())
+    .then( (json) => dispatch({
+      type: 'GET_MANIFEST_ITEMS',
+      items: json
+    }))
+  }
+}

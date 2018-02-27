@@ -22,8 +22,7 @@ class ItemWrapper extends React.Component {
     return(
        <Draggable onDrag={this.handleDrag} bounds="parent" defaultPosition={{x: this.state.x, y:this.state.y}}>
          <div className="box">
-           I can only be moved within my offsetParent.<br /><br />
-           Both parent padding and child margin work properly.
+           {this.props.item.name}
          </div>
       </Draggable>)
   }

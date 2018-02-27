@@ -5,20 +5,27 @@ import ItemWrapper from '../components/ItemWrapper'
 import '../styles/UserManifestsContainer.css'
 import {Button} from 'react-materialize'
 import { connect } from 'react-redux'
+import { loadManifestItems} from '../actions/actions'
 
 class UserManifestsContainer extends React.Component {
 
+  componentDidMount(){
+    console.log('mounted')
+    //load all the initial items from state.
+    this.props.loadManifestItems('http://localhost:3001/api/v1/manifests/getItems', this.props.match.params.manifestId)
+  }
+
   render(){
-    console.log('look im here')
-    let item = <ItemWrapper />
+
+    let items = this.props.items.map( (item) => <ItemWrapper key={item.id} item={item} />)
+
     return (
       <div>
-        hi
         <div className="parentContainer">
           <UserManifestsNavbar />
           <div>
              <div style={{height: '750px', width: '1100px', padding: '10px'}}>
-               {item}
+               {items}
              </div>
            </div>
            <div className='buttonsContainer'>
@@ -35,14 +42,8 @@ class UserManifestsContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  //get all the items
-//   const items = state.items.find(items => item.id == ownProps.match.params.itemId)
-// if (item) {
-//   return {item}
-// } else {
-//   return {movie: {}}
-// }
+let mapStateToProps = (state) => {
+  return {items: state.manifestsReducer.items}
 }
 
-export default connect()(UserManifestsContainer)
+export default connect(mapStateToProps ,{loadManifestItems})(UserManifestsContainer)

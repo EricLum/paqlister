@@ -64,7 +64,7 @@ class ManifestContainer extends React.Component {
                    <input type='text' value='10' name='user_id' placeholder='user_id'></input>
                    <input type='submit' name='submit' placeholder='submit'></input>
                  </form></div>} />
-            <Route path={`manifests/:manifestId`}
+            <Route path={`/manifests/:manifestId`}
              component={UserManifestsContainer}/>
           </Switch>
         </div>
