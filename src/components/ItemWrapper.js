@@ -34,4 +34,8 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
+const mapStateToProps = (state) => {
+  return {x: state.manifestsReducer.xposition, y: state.manifestsReducer.yposition}
+}
+
 export default connect(null,)(ItemWrapper)

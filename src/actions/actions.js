@@ -142,3 +142,53 @@ export function loadManifestItems(url, manifestId){
     }))
   }
 }
+
+export function loadManifestItemPositions(url,manifestId) {
+  let headers = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+    manifestId
+    })
+  }
+  return (dispatch) => {
+    fetch(url,headers)
+    .then( (response) => {
+      return response
+    }).then((response) => response.json())
+    .then( (json) => dispatch({
+      type: 'GET_MANIFEST_ITEM_POSITIONS',
+      manifestItems: json
+    }))
+  }
+}
+
+export function saveManifestItemPosition(url, manifestItem){
+  let headers = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+    manifestItem
+    })
+  }
+  return (dispatch) => {
+    fetch(url,headers)
+    .then( (response) => {
+      return response
+    }).then((response) => response.json())
+    .then( (json) => dispatch({
+      type: 'SAVE_MANIFEST_ITEM_POSITION',
+      manifestItem: json
+    }))
+  }
+}
+
+export function saveManifestItemPositions(url,manifestItems){
+  manifestItems.map()
+}
