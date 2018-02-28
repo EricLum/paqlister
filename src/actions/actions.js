@@ -144,6 +144,7 @@ export function loadManifestItems(url, manifestId){
 }
 
 export function loadManifestItemPositions(url,manifestId) {
+
   let headers = {
     method: 'post',
     headers: {
@@ -154,15 +155,19 @@ export function loadManifestItemPositions(url,manifestId) {
     manifestId
     })
   }
+
   return (dispatch) => {
     fetch(url,headers)
     .then( (response) => {
+      dispatch(itemsAreLoading(true))
       return response
     }).then((response) => response.json())
     .then( (json) => dispatch({
       type: 'GET_MANIFEST_ITEM_POSITIONS',
       manifestItems: json
-    }))
+    })).then( () => {
+      dispatch(itemsAreLoading(false))
+    })
   }
 }
 
@@ -187,6 +192,14 @@ export function saveManifestItemPosition(url,manifestItemId,itemId,x,y){
     }).then((response) => response.json())
   }
 }
+
+export function itemsAreLoading(bool) {
+    return {
+        type: 'ITEMS_ARE_LOADING',
+        isLoading: bool
+    };
+}
+
 
 // export function saveManifestItemPositions(url,manifestItems){
 //   manifestItems.map( (item) => dispatch(saveManifestItemPositions('http://localhost:3001/api/v1/manifestitems/')))

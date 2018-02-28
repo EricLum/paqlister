@@ -1,5 +1,5 @@
 export default function myReducer(
-  state = {items: [], manifests: [], manifestItems: []},
+  state = {items: [], manifests: [], manifestItems: [], isLoading: false},
   action
 ) {
   switch (action.type){
@@ -20,6 +20,8 @@ export default function myReducer(
       let manifestItems = state.manifestItems.slice();
       manifestItems = action.manifestItems
       return Object.assign({}, state, {manifestItems: manifestItems})
+    case 'ITEMS_ARE_LOADING':
+      return Object.assign({}, state, {isLoading: action.isLoading})
     // case 'SAVE_MANIFEST_ITEM_POSITION':
     //   // take obj from manifestItems array, save state here to be identical to response from db.
     //   // return obj

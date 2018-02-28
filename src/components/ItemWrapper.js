@@ -19,13 +19,24 @@ class ItemWrapper extends React.Component {
     })
   }
 
-  componentWillMount(){
+  componentDidMount(){
     if (this.props.positions[0]){
       this.setState({
         x: this.props.positions[0].left_position,
         y: this.props.positions[0].top_position
-      })
+      }, this.forceUpdate())
     }
+
+  }
+
+  componentWillReceiveProps(nextProps){
+    if (nextProps && this.props.positions[0]){
+      this.setState({
+        x: this.props.positions[0].left_position,
+        y: this.props.positions[0].top_position
+      }, this.forceUpdate())
+    }
+
   }
 
   handleMouseUp = (e,ui) => {
@@ -33,10 +44,13 @@ class ItemWrapper extends React.Component {
   }
 
   render (){
+
     return(
-       <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent" position={{x: this.state.x, y:this.state.y}}>
+       <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y:this.state.y}}>
          <div className="box">
-           {this.props.item.name}
+           ItemName: {this.props.item.name} <br></br>
+           ItemID: {this.props.item.id}<br></br>
+           ManifestID: {this.props.manifestId}<br></br>
          </div>
       </Draggable>)
   }
