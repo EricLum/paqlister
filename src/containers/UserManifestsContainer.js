@@ -18,8 +18,13 @@ class UserManifestsContainer extends React.Component {
   render(){
 
     if (this.props.isLoading){
-      return <p>im LOADING.</p>
+      return (
+        <div style={{height: '750px', width: '1100px', padding: '10px'}}>
+
+        </div>
+      )
     }
+
 
     var test = this.props.manifestItems
     let items = this.props.items.map( (item) => {
