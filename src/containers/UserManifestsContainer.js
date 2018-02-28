@@ -16,13 +16,14 @@ class UserManifestsContainer extends React.Component {
     this.props.loadManifestItemPositions('http://localhost:3001/api/v1/manifestitems/getManifestItemsPositions', this.props.match.params.manifestId)
   }
 
-  handleOnSave = (e) => {
-
-  }
-
   render(){
-    console.log(this.props)
-    let items = this.props.items.map( (item) => <ItemWrapper key={item.id} item={item} />)
+
+    var test = this.props.manifestItems
+    let items = this.props.items.map( (item) => {
+      let manifestItemPosition = this.props.manifestItems.filter( (manifestItem) => manifestItem.item_id == item.id )
+      return (<ItemWrapper key={item.id} item={item} manifestId={this.props.match.params.manifestId} positions={manifestItemPosition}/>)
+
+  })
 
     return (
       <div>
@@ -35,7 +36,7 @@ class UserManifestsContainer extends React.Component {
            </div>
            <div className='buttonsContainer'>
              <div className='buttonsRow'>
-               <Button className='controlButton saveButton'>Save</Button>
+               <Button className='controlButton saveButton' onClick={this.handleOnSave}>Save</Button>
                <Button className='controlButton shareButton'>Share</Button>
                <Button className='controlButton resetButton'>Reset</Button>
              </div>

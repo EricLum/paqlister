@@ -3,7 +3,8 @@ import '../styles/ItemWrapper.css'
 import Draggable from 'react-draggable'
 import { bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {addItem} from '../actions/actions'
+import {saveManifestItemPosition} from '../actions/actions'
+const BASE_URL = 'http://localhost:3001/api/v1/manifest_items/'
 class ItemWrapper extends React.Component {
 
   state = {
@@ -18,9 +19,22 @@ class ItemWrapper extends React.Component {
     })
   }
 
+  componentWillMount(){
+    if (this.props.positions[0]){
+      this.setState({
+        x: this.props.positions[0].left_position,
+        y: this.props.positions[0].top_position
+      })
+    }
+  }
+
+  handleMouseUp = (e,ui) => {
+    this.props.saveManifestItemPosition(`${BASE_URL}${this.props.item.id}`, this.props.manifestId,this.props.item.id,this.state.x, this.state.y)
+  }
+
   render (){
     return(
-       <Draggable onDrag={this.handleDrag} bounds="parent" defaultPosition={{x: this.state.x, y:this.state.y}}>
+       <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent" position={{x: this.state.x, y:this.state.y}}>
          <div className="box">
            {this.props.item.name}
          </div>
@@ -30,12 +44,9 @@ class ItemWrapper extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addItem
+    saveManifestItemPosition
   }, dispatch)
 }
 
-const mapStateToProps = (state) => {
-  return {x: state.manifestsReducer.xposition, y: state.manifestsReducer.yposition}
-}
 
-export default connect(null,)(ItemWrapper)
+export default connect(null, mapDispatchToProps)(ItemWrapper)

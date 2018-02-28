@@ -1,5 +1,6 @@
 import React from 'react'
 import {SideNav, SideNavItem, Button} from 'react-materialize'
+import { Link } from 'react-router-dom'
 
 class UserManifestsNavbar extends React.Component {
   render (){
@@ -14,11 +15,16 @@ class UserManifestsNavbar extends React.Component {
   			email: 'jdandturk@gmail.com'
   		}}
   	/>
-  	<SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
+    <SideNavItem divider />
+    <Link to={'/manifests'}>
+      <SideNavItem>Back to collections</SideNavItem>
+    </Link>
+
+  	{/* <SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
   	<SideNavItem href='#!second'>Second Link</SideNavItem>
   	<SideNavItem divider />
   	<SideNavItem subheader>Subheader</SideNavItem>
-  	<SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
+  	<SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem> */}
   </SideNav>
     )
   }

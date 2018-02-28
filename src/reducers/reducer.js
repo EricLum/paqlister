@@ -18,13 +18,12 @@ export default function myReducer(
     case 'GET_MANIFEST_ITEM_POSITIONS':
       // this exists because items are in a different table than manifestItems store the position of the item for the current manifest.
       let manifestItems = state.manifestItems.slice();
-      manifestItems=action.manifestItems
+      manifestItems = action.manifestItems
       return Object.assign({}, state, {manifestItems: manifestItems})
-    case 'SAVE_MANIFEST_ITEM_POSITION':
-      let manifestItem = Object.assign({},state.manifestItem)
-
-      // let manifestItems = state.manifestItems.slice();
-      return state
+    // case 'SAVE_MANIFEST_ITEM_POSITION':
+    //   // take obj from manifestItems array, save state here to be identical to response from db.
+    //   // return obj
+    //   return state
     default:
       return state
   }

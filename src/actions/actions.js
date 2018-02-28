@@ -166,15 +166,18 @@ export function loadManifestItemPositions(url,manifestId) {
   }
 }
 
-export function saveManifestItemPosition(url, manifestItem){
+export function saveManifestItemPosition(url,manifestItemId,itemId,x,y){
   let headers = {
-    method: 'post',
+    method: 'put',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
     body: JSON.stringify({
-    manifestItem
+    left_position: x,
+    top_position: y,
+    manifestItemId: manifestItemId,
+    itemId: itemId
     })
   }
   return (dispatch) => {
@@ -182,13 +185,10 @@ export function saveManifestItemPosition(url, manifestItem){
     .then( (response) => {
       return response
     }).then((response) => response.json())
-    .then( (json) => dispatch({
-      type: 'SAVE_MANIFEST_ITEM_POSITION',
-      manifestItem: json
-    }))
   }
 }
 
-export function saveManifestItemPositions(url,manifestItems){
-  manifestItems.map()
-}
+// export function saveManifestItemPositions(url,manifestItems){
+//   manifestItems.map( (item) => dispatch(saveManifestItemPositions('http://localhost:3001/api/v1/manifestitems/')))
+//   )
+// }
