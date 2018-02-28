@@ -20,7 +20,7 @@ class UserManifestsContainer extends React.Component {
     if (this.props.isLoading){
       return (
         <div style={{height: '750px', width: '1100px', padding: '10px'}}>
-
+          <img src='https://thumb1.shutterstock.com/display_pic_with_logo/165585330/614711306/stock-vector-vector-d-table-for-object-presentation-empty-white-top-table-isolated-on-transparent-background-614711306.jpg' className='box'></img>
         </div>
       )
     }
@@ -37,7 +37,7 @@ class UserManifestsContainer extends React.Component {
         <div className="parentContainer">
           <UserManifestsNavbar />
           <div>
-             <div style={{height: '750px', width: '1100px', padding: '10px'}}>
+             <div style={{height: '1080px', width: '1900px', padding: '10px'}}>
                {items}
              </div>
            </div>

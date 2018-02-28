@@ -9,7 +9,8 @@ class ItemWrapper extends React.Component {
 
   state = {
     x: 0,
-    y: 0
+    y: 0,
+    class: ''
   }
 
   handleDrag = (e,ui) => {
@@ -43,14 +44,23 @@ class ItemWrapper extends React.Component {
     this.props.saveManifestItemPosition(`${BASE_URL}${this.props.item.id}`, this.props.manifestId,this.props.item.id,this.state.x, this.state.y)
   }
 
+  handleSpin = (e) => {
+    this.setState({
+      ...this.state,
+      class: 'box'
+    })
+  }
+
   render (){
 
     return(
-       <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y:this.state.y}}>
-         <div className="box">
+       <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
+         <div className='box'>
+           <img src={this.props.item.image} height='200px' width='200px'/>
            ItemName: {this.props.item.name} <br></br>
            ItemID: {this.props.item.id}<br></br>
            ManifestID: {this.props.manifestId}<br></br>
+           <button onClick={this.handleSpin}>GET SPINNY</button>
          </div>
       </Draggable>)
   }

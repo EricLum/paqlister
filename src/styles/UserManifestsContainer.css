@@ -1,5 +1,7 @@
+
+
 .parentContainer {
-  background-color: green;
+  background-image: url('/wood.jpeg');
   display: grid;
   grid-template-columns: 300px auto 10%;
   grid-template-rows: 15% auto 15%;

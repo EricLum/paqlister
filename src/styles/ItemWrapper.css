@@ -1,5 +1,13 @@
 .box{
-  background-color: blue;
-  height: 100px;
-  width: 100px;
+  color: black;
+  height: 200px;
+  width: 200px;
+  /*animation-name: spinner;
+  animation-iteration-count: 1;
+  animation-duration: .5s;*/
+}
+
+@keyframes spinner {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
