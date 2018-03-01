@@ -5,7 +5,7 @@ import ItemWrapper from '../components/ItemWrapper'
 import '../styles/UserManifestsContainer.css'
 import {Button, Icon, Modal} from 'react-materialize'
 import { connect } from 'react-redux'
-import { loadManifestItems, loadManifestItemPositions} from '../actions/actions'
+import { loadManifestItems, loadManifestItemPositions, addManifestItem} from '../actions/actions'
 
 class UserManifestsContainer extends React.Component {
 
@@ -23,10 +23,21 @@ class UserManifestsContainer extends React.Component {
     this.props.loadManifestItemPositions('http://localhost:3001/api/v1/manifestitems/getManifestItemsPositions', this.props.match.params.manifestId)
   }
 
-  handleAddItem = () => {
+  handleAddItem = (e) => {
     // have to add item to db
-
+    e.preventDefault()
+    this.props.addManifestItem('http://localhost:3001/api/v1/items',this.state,
+    this.props.match.params.manifestId)
     //have to connect manifest to item.
+
+    //blank out state on submit.
+    this.setState({
+      name: '',
+      description: '',
+      price: '',
+      brand: '',
+      image: ''
+    })
   }
 
   handleOnChange = (e) => {
@@ -69,6 +80,8 @@ class UserManifestsContainer extends React.Component {
                  header='Add an item'
                  trigger={<Button className ='controlButton saveButton' waves='light'>Add Item</Button>}>
                   <form onSubmit={this.handleAddItem}>
+                    <input type='text' onChange={this.handleOnChange}
+                      name='name' placeholder='name'/>
                     <input type='text' onChange={this.handleOnChange} name='description' placeholder='description'/>
                     <input type='text' onChange={this.handleOnChange} name='price' placeholder='price'/>
                     <input type='text' onChange={this.handleOnChange} name= 'brand' placeholder='brand'/>
@@ -92,4 +105,4 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps ,{loadManifestItems, loadManifestItemPositions})(UserManifestsContainer)
+export default connect(mapStateToProps ,{loadManifestItems, loadManifestItemPositions, addManifestItem})(UserManifestsContainer)

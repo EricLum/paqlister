@@ -22,10 +22,10 @@ export default function myReducer(
       return Object.assign({}, state, {manifestItems: manifestItems})
     case 'ITEMS_ARE_LOADING':
       return Object.assign({}, state, {isLoading: action.isLoading})
-    // case 'SAVE_MANIFEST_ITEM_POSITION':
-    //   // take obj from manifestItems array, save state here to be identical to response from db.
-    //   // return obj
-    //   return state
+    case 'ADD_MANIFEST_ITEM':
+      let curManifestItems = state.items.slice();
+      curManifestItems.push(action.item)
+      return Object.assign({}, state, {items: curManifestItems})
     default:
       return state
   }

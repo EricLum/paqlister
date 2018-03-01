@@ -200,8 +200,25 @@ export function itemsAreLoading(bool) {
     };
 }
 
+export function addManifestItem(url,{name,description,price,brand,image}, manifestId) {
+  let headers = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      manifestId,name,description,price,brand,image
+    })
+  }
 
-// export function saveManifestItemPositions(url,manifestItems){
-//   manifestItems.map( (item) => dispatch(saveManifestItemPositions('http://localhost:3001/api/v1/manifestitems/')))
-//   )
-// }
+  return (dispatch) => {
+    fetch(url,headers)
+    .then( (response) => {
+      dispatch(itemsAreLoading(true))
+      return response
+    }).then((response) => response.json())
+    .then( (json)=>dispatch({type: 'ADD_MANIFEST_ITEM', item: json}))
+    .then ( () => dispatch(itemsAreLoading(false)))
+  }
+}
