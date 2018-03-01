@@ -3,11 +3,11 @@ import {SideNav, SideNavItem, Button} from 'react-materialize'
 
 class ManifestNavbar extends React.Component {
 
-  
+
 
   render (){
     return( <SideNav
-      	trigger={<Button>Show Menu</Button>}>
+      	trigger={<Button className='red darken-1'>Show Menu</Button>}>
       	<SideNavItem userView
       		user={{
       			background: 'img/office.jpg',
@@ -16,11 +16,8 @@ class ManifestNavbar extends React.Component {
       			email: 'jdandturk@gmail.com'
       		}}
       	/>
-      	<SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
-      	<SideNavItem href='#!second'>Second Link</SideNavItem>
+      	<SideNavItem href='/' icon='cloud'>Home</SideNavItem>
       	<SideNavItem divider />
-      	<SideNavItem subheader>Subheader</SideNavItem>
-      	<SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
       </SideNav>)
   }
 }

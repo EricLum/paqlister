@@ -1,5 +1,5 @@
 import React from 'react'
-import {SideNav, Button, SideNavItem} from 'react-materialize'
+import {SideNav, Button, SideNavItem, Parallax} from 'react-materialize'
 import {Route, Switch, Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -52,20 +52,42 @@ class ManifestContainer extends React.Component {
     return (
       <div>
         <ManifestNavbar />
+
             <Switch>
             <Route exact path='/manifests' render={ () => <div className='collectionsGrid'>
               {manifestContainers}
+              <div className='input-field'>
                 <form onSubmit={this.handleOnSave}>
-                   <label>Create a new container item</label>
-                   <input name='title' type='text' onChange={this.handleOnChange} placeholder='Title'></input>
-                   <input name='limit' type='text' onChange={this.handleOnChange} placeholder='Limit'></input>
-                   <input name='description' type='text' onChange={this.handleOnChange} placeholder='description'></input>
-                   <input type='text' value='10' name='user_id' placeholder='user_id'></input>
-                   <input type='submit' name='submit' placeholder='submit'></input>
-                 </form></div>} />
+                   <h4>Create a new manifest</h4>
+                   <div className='input-field'>
+                     <input name='title' id='title' type='text' onChange={this.handleOnChange}></input>
+                     <label for='title'>Title</label>
+                   </div>
+                   <div className='input-field'>
+                     <input name='limit' id='limit' type='text' onChange={this.handleOnChange}></input>
+                     <label for='limit'>Limit</label>
+                   </div>
+                   <div className='input-field'>
+                     <input name='description' id='description' type='text' onChange={this.handleOnChange}></input>
+                     <label for='description'>Description</label>
+                   </div>
+                   <div className='input-field'>
+                     <input type='text' value='10' id='user_id' name='user_id'></input>
+                     <label for='user_id'>User_id_placeholder</label>
+                   </div>
+                   <div className='input-field'>
+                     <Button>
+                       <input type='submit' id='submit' name='submit'></input>
+                       <label for='submit'>Submit</label>
+                     </Button>
+                   </div>
+                 </form>
+              </div>
+            </div>} />
             <Route path={`/manifests/:manifestId`}
              component={UserManifestsContainer}/>
           </Switch>
+
         </div>
     )
   }

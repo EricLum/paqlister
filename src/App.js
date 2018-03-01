@@ -6,7 +6,7 @@ import Landing from './containers/Landing'
 import LandingCards from './components/LandingCards'
 import UserManifestsContainer from './containers/UserManifestsContainer'
 import ManifestContainer from './containers/ManifestContainer'
-import {Row, Col, Card,Icon} from 'react-materialize'
+import {Row, Col, Card, Icon, Parallax} from 'react-materialize'
 import BasicLayout from './BasicLayout'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 

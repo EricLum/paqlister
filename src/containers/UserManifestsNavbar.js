@@ -6,7 +6,7 @@ class UserManifestsNavbar extends React.Component {
   render (){
     return(
       <SideNav
-  	trigger={<Button>Show Menu</Button>}>
+  	trigger={<Button className='red darken-1'>Show Menu</Button>}>
   	<SideNavItem userView
   		user={{
   			background: 'img/office.jpg',

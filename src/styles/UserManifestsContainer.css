@@ -1,5 +1,3 @@
-
-
 .parentContainer {
   background-image: url('/wood.jpeg');
   display: grid;
@@ -31,6 +29,10 @@ grid-column: 1/2
 
 .resetButton {
   grid-column: 3/4;
+}
+
+.dangerModal {
+  color: black;
 }
 
 ul li {
