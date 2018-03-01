@@ -23,7 +23,6 @@ class ManifestContainer extends React.Component {
   }
 
   handleOnChange = (e) => {
-    console.log(this.state)
     this.state[e.target.name] = e.target.value
   }
 

@@ -3,16 +3,37 @@ import React from 'react'
 import UserManifestsNavbar from './UserManifestsNavbar'
 import ItemWrapper from '../components/ItemWrapper'
 import '../styles/UserManifestsContainer.css'
-import {Button} from 'react-materialize'
+import {Button, Icon, Modal} from 'react-materialize'
 import { connect } from 'react-redux'
 import { loadManifestItems, loadManifestItemPositions} from '../actions/actions'
 
 class UserManifestsContainer extends React.Component {
 
+  state = {
+    name: '',
+    description: '',
+    price: '',
+    brand: '',
+    image: ''
+  }
+
   componentDidMount(){
     //load all the initial items from state and their positions.
     this.props.loadManifestItems('http://localhost:3001/api/v1/manifests/getItems', this.props.match.params.manifestId)
     this.props.loadManifestItemPositions('http://localhost:3001/api/v1/manifestitems/getManifestItemsPositions', this.props.match.params.manifestId)
+  }
+
+  handleAddItem = () => {
+    // have to add item to db
+
+    //have to connect manifest to item.
+  }
+
+  handleOnChange = (e) => {
+    console.log(this.state)
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   render(){
@@ -44,6 +65,17 @@ class UserManifestsContainer extends React.Component {
            <div className='buttonsContainer'>
              <div className='buttonsRow'>
                <Button className='controlButton resetButton'>Reset</Button>
+               <Modal
+                 header='Add an item'
+                 trigger={<Button className ='controlButton saveButton' waves='light'>Add Item</Button>}>
+                  <form onSubmit={this.handleAddItem}>
+                    <input type='text' onChange={this.handleOnChange} name='description' placeholder='description'/>
+                    <input type='text' onChange={this.handleOnChange} name='price' placeholder='price'/>
+                    <input type='text' onChange={this.handleOnChange} name= 'brand' placeholder='brand'/>
+                    <input type='text' onChange={this.handleOnChange} name='image' placeholder='image URL'/>
+                    <input type='submit' />
+                  </form>
+               </Modal>
              </div>
           </div>
           </div>
