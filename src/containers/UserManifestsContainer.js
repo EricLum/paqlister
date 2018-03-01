@@ -10,11 +10,14 @@ import { loadManifestItems, loadManifestItemPositions, addManifestItem} from '..
 class UserManifestsContainer extends React.Component {
 
   state = {
-    name: '',
-    description: '',
-    price: '',
-    brand: '',
-    image: ''
+    formData: {
+      name: '',
+      description: '',
+      price: '',
+      brand: '',
+      image: ''
+    },
+    partyMode: false
   }
 
   componentDidMount(){
@@ -26,18 +29,31 @@ class UserManifestsContainer extends React.Component {
   handleAddItem = (e) => {
     // have to add item to db
     e.preventDefault()
-    this.props.addManifestItem('http://localhost:3001/api/v1/items',this.state,
+    this.props.addManifestItem('http://localhost:3001/api/v1/items',this.state.formData,
     this.props.match.params.manifestId)
     //have to connect manifest to item.
 
     //blank out state on submit.
     this.setState({
-      name: '',
-      description: '',
-      price: '',
-      brand: '',
-      image: ''
+      formData: {
+        name: '',
+        description: '',
+        price: '',
+        brand: '',
+        image: ''
+      },
+      partyMode: false
     })
+  }
+
+  handleEngageDangerMode = (e) => {
+
+    this.setState((prevState)=> {
+      return { ...prevState,
+        partyMode: true
+      }
+    },this.forceUpdate())
+
   }
 
   handleOnChange = (e) => {
@@ -61,7 +77,7 @@ class UserManifestsContainer extends React.Component {
     var test = this.props.manifestItems
     let items = this.props.items.map( (item) => {
       let manifestItemPosition = this.props.manifestItems.filter( (manifestItem) => manifestItem.item_id == item.id )
-      return (<ItemWrapper key={item.id} item={item} manifestId={this.props.match.params.manifestId} positions={manifestItemPosition}/>)
+      return (<ItemWrapper partyMode={this.state.partyMode} key={item.id} item={item} manifestId={this.props.match.params.manifestId} positions={manifestItemPosition}/>)
   })
 
     return (
@@ -89,11 +105,27 @@ class UserManifestsContainer extends React.Component {
                     <input type='submit' />
                   </form>
                </Modal>
+               <Modal
+                 header="Warning"
+                 trigger={<Button className ='red accent-4 controlButton shareButton' waves='light'>Activate Danger Mode</Button>}>
+                  <p>
+                    By engaging danger mode you may break the New York City Local Law 113 of 2005. Please be well equipped, stay hydrated, and with all due respect of the law, please ask yourself whether the following is really necessary. If you are willing to proceed you may be subject to the following side effects of danger mode:
+                  </p>
+                    <ul>
+                      <li>Moderately increased heartrate</li>
+                      <li>Increased feelings of general happiness and pleasure</li>
+                      <li>Extremely high chance of movement of the orbicularis oculi  muscle and contraction of the zygomatic major muscle.</li>
+                      <li>Highly decreased inhibitions</li>
+                      <li>Broken Ear-Drum syndrome</li>
+                      <li>Bananas in Pajamas</li>
+                      <li>Highly increased risk of embarassing photos</li>
+                    </ul>
+                  <Button className='red accent-4' onClick={this.handleEngageDangerMode}><Icon left >party_mode</Icon>Engage Danger Mode</Button>
+               </Modal>
              </div>
           </div>
           </div>
       </div>
-
     )
   }
 }

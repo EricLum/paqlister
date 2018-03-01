@@ -53,6 +53,18 @@ class ItemWrapper extends React.Component {
   }
 
   render (){
+    if(this.props.partyMode){
+      return(
+         <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
+           <div className='box partyMode'>
+             <img className='no-drag' src={this.props.item.image} height='200px' width='200px'/>
+             ItemName: {this.props.item.name} <br></br>
+             ItemID: {this.props.item.id}<br></br>
+             ManifestID: {this.props.manifestId}<br></br>
+             Price: {this.props.item.price} <br></br>
+           </div>
+        </Draggable>)
+      }
     return(
        <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
          <div className='box'>
@@ -61,10 +73,11 @@ class ItemWrapper extends React.Component {
            ItemID: {this.props.item.id}<br></br>
            ManifestID: {this.props.manifestId}<br></br>
            Price: {this.props.item.price} <br></br>
-           <Button waves='light' onClick={this.handleSpin}>GET SPINNY</Button>
+
          </div>
       </Draggable>)
   }
+
 }
 
 const mapDispatchToProps = (dispatch) => {

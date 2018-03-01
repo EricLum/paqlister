@@ -2,16 +2,21 @@
   color: black;
   height: 200px;
   width: 200px;
-  /*animation-name: spinner;
-  animation-iteration-count: 1;
-  animation-duration: .5s;*/
+  -webkit-filter: drop-shadow(25px 25px 25px #222);
+  filter: drop-shadow(25px 25px 25px #222);
 }
 
 @keyframes spinner {
   from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
+  to {transform:rotate(10000deg);}
 }
 
 .no-drag {
   -webkit-user-drag: none;
+}
+
+.partyMode {
+  animation-name: spinner;
+  animation-iteration-count: 10;
+  animation-duration: .5s;
 }
