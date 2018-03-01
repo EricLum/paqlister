@@ -2,8 +2,8 @@
   color: black;
   height: 200px;
   width: 200px;
-  -webkit-filter: drop-shadow(25px 25px 25px #222);
-  filter: drop-shadow(25px 25px 25px #222);
+  -webkit-filter: drop-shadow(15px 15px 15px #222);
+  filter: drop-shadow(15px 15px 15px #222);
 }
 
 @keyframes spinner {
