@@ -19,7 +19,7 @@ class ManifestContainer extends React.Component {
     title: '',
     limit: '',
     description: '',
-    user_id: 10
+    user_id: 13
   }
 
   handleOnChange = (e) => {
@@ -33,7 +33,7 @@ class ManifestContainer extends React.Component {
       title: '',
       limit: '',
       description: '',
-      user_id: 10
+      user_id: 13
     })
   }
 
@@ -72,7 +72,7 @@ class ManifestContainer extends React.Component {
                      <label for='description'>Description</label>
                    </div>
                    <div className='input-field'>
-                     <input type='text' value='10' id='user_id' name='user_id'></input>
+                     <input type='text' id='user_id' name='user_id'></input>
                      <label for='user_id'>User_id_placeholder</label>
                    </div>
                    <div className='input-field'>

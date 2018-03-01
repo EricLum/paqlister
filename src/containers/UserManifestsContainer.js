@@ -75,12 +75,14 @@ class UserManifestsContainer extends React.Component {
       )
     }
 
+let items ;
+    if (this.props.items) {
+      items= this.props.items.map( (item) => {
+        let manifestItemPosition = this.props.manifestItems.filter( (manifestItem) => manifestItem.item_id == item.id )
+        return (<ItemWrapper partyMode={this.state.partyMode} key={item.id} item={item} manifestId={this.props.match.params.manifestId} positions={manifestItemPosition}/>)
+    })
 
-    var test = this.props.manifestItems
-    let items = this.props.items.map( (item) => {
-      let manifestItemPosition = this.props.manifestItems.filter( (manifestItem) => manifestItem.item_id == item.id )
-      return (<ItemWrapper partyMode={this.state.partyMode} key={item.id} item={item} manifestId={this.props.match.params.manifestId} positions={manifestItemPosition}/>)
-  })
+    }
 
     return (
       <div>
