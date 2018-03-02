@@ -25,6 +25,7 @@ class ItemWrapper extends React.Component {
   }
 
   componentDidMount(){
+
     if (this.props.positions[0]){
       this.setState({
         x: this.props.positions[0].left_position,
@@ -56,7 +57,8 @@ class ItemWrapper extends React.Component {
   }
 
   render (){
-    console.log(this.props.item.image)
+    console.log(this.props.manifestItems)
+    console.log(this.props.positions[0])
     if(this.props.partyMode){
       return(
          <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
@@ -69,6 +71,7 @@ class ItemWrapper extends React.Component {
            </div>
         </Draggable>)
       }
+
     return(
        <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
          <div className='box'>
@@ -90,5 +93,11 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
+const mapStateToProps = (state) => {
+  return {
+    manifestItems: state.manifestsReducer.manifestItems
+  }
+}
 
-export default connect(null, mapDispatchToProps)(ItemWrapper)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemWrapper)
