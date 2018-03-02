@@ -171,7 +171,8 @@ export function loadManifestItemPositions(url,manifestId) {
   }
 }
 
-export function saveManifestItemPosition(url,manifestItemId,itemId,x,y){
+
+export function saveManifestItemPosition(url,manifestItemId,manifestId,itemId,x,y){
   let headers = {
     method: 'put',
     headers: {
@@ -181,13 +182,17 @@ export function saveManifestItemPosition(url,manifestItemId,itemId,x,y){
     body: JSON.stringify({
     left_position: x,
     top_position: y,
-    manifestItemId: manifestItemId,
+    manifestItemId: manifestId,
     itemId: itemId
     })
   }
   return (dispatch) => {
     fetch(url,headers)
     .then( (response) => {
+      dispatch({
+        type: 'UPDATE_MANIFEST_ITEM',
+        manifestItemId, x, y
+      })
       return response
     }).then((response) => response.json())
   }

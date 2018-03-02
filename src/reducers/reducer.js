@@ -26,6 +26,14 @@ export default function myReducer(
       let curManifestItems = state.items.slice();
       curManifestItems.push(action.item)
       return Object.assign({}, state, {items: curManifestItems})
+    case 'UPDATE_MANIFEST_ITEM':
+      let myManifestItems = state.manifestItems.slice()
+      let updatingItem = myManifestItems.find( (mi) => {
+        return mi.id === action.manifestItemId
+      })
+      updatingItem.left_position = action.x
+      updatingItem.top_position = action.y
+      return Object.assign({}, state, {manifestItems: myManifestItems})
     default:
       return state
   }

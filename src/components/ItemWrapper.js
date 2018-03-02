@@ -46,7 +46,7 @@ class ItemWrapper extends React.Component {
   }
 
   handleMouseUp = (e,ui) => {
-    this.props.saveManifestItemPosition(`${BASE_URL}${this.props.item.id}`, this.props.manifestId,this.props.item.id,this.state.x, this.state.y)
+    this.props.saveManifestItemPosition(`${BASE_URL}${this.props.item.id}`,this.props.positions[0].id ,this.props.manifestId,this.props.item.id,this.state.x, this.state.y)
   }
 
   handleSpin = (e) => {
@@ -61,7 +61,7 @@ class ItemWrapper extends React.Component {
     console.log(this.props.positions[0])
     if(this.props.partyMode){
       return(
-         <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
+         <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.props.positions[0].left_position, y: this.props.positions[0].top_position}}>
            <div className='box partyMode'>
              <img className='no-drag' src={this.props.item.image} height='200px' width='200px'/>
              ItemName: {this.props.item.name} <br></br>
