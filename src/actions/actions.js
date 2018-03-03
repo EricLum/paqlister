@@ -193,6 +193,10 @@ export function saveManifestItemPosition(url,manifestItemId,itemId,x,y){
   }
 }
 
+export function userLogin(user){
+  return {type: 'USER_LOGIN', user: user}
+}
+
 export function itemsAreLoading(bool) {
     return {
         type: 'ITEMS_ARE_LOADING',
@@ -221,4 +225,25 @@ export function addManifestItem(url,{name,description,price,brand,image}, manife
     .then( (json)=>dispatch({type: 'ADD_MANIFEST_ITEM', item: json}))
     .then ( () => dispatch(itemsAreLoading(false)))
   }
+}
+
+export function signupUser(url, payload){
+  let headers =  {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      user: {
+        username: payload.username,
+        password: payload.password
+      }
+    })
+  }
+  return (dispatch) => {
+    fetch(url,headers)
+    .then( (response) => response.json())
+    .then( (json) => dispatch(userLogin(json))
+    )}
 }

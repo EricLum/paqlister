@@ -1,5 +1,5 @@
 export default function myReducer(
-  state = {items: [], manifests: [], manifestItems: [], isLoading: false},
+  state = {items: [], manifests: [], manifestItems: [], isLoading: false, user: {}},
   action
 ) {
   switch (action.type){
@@ -26,6 +26,10 @@ export default function myReducer(
       let curManifestItems = state.items.slice();
       curManifestItems.push(action.item)
       return Object.assign({}, state, {items: curManifestItems})
+    case 'USER_LOGIN':
+      return Object.assign({}, state, {user: action.user})
+    case 'USER_LOGOUT':
+      return Object.assign({}, state, {user: {}})
     default:
       return state
   }

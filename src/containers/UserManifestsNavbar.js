@@ -16,15 +16,10 @@ class UserManifestsNavbar extends React.Component {
   		}}
   	/>
     <SideNavItem divider />
-    <Link to={'/manifests'}>
+    <Link to='/manifests'>
       <SideNavItem>Back to collections</SideNavItem>
     </Link>
 
-  	{/* <SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
-  	<SideNavItem href='#!second'>Second Link</SideNavItem>
-  	<SideNavItem divider />
-  	<SideNavItem subheader>Subheader</SideNavItem>
-  	<SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem> */}
   </SideNav>
     )
   }
