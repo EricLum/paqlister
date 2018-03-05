@@ -29,6 +29,7 @@ export default function myReducer(
     case 'USER_LOGIN':
       return Object.assign({}, state, {user: action.user})
     case 'USER_LOGOUT':
+      localStorage.removeItem('token')
       return Object.assign({}, state, {user: {}})
     default:
       return state

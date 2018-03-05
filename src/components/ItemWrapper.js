@@ -1,11 +1,9 @@
 import React from 'react'
 import '../styles/ItemWrapper.css'
 import Draggable from 'react-draggable'
-import { Button } from 'react-materialize'
 import { bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {saveManifestItemPosition} from '../actions/actions'
-import PropTypes from 'prop-types'
 const BASE_URL = 'http://localhost:3001/api/v1/manifest_items/'
 
 
@@ -63,7 +61,7 @@ class ItemWrapper extends React.Component {
       return(
          <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
            <div className='box partyMode'>
-             <img className='no-drag' src={this.props.item.image} height='200px' width='200px'/>
+             <img className='no-drag' src={this.props.item.image} height='200px' width='200px' alt='its a picture'/>
              ItemName: {this.props.item.name} <br></br>
              ItemID: {this.props.item.id}<br></br>
              ManifestID: {this.props.manifestId}<br></br>

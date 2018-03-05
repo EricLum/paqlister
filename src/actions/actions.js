@@ -197,6 +197,33 @@ export function userLogin(user){
   return {type: 'USER_LOGIN', user: user}
 }
 
+export function authUser(url, {username,password}){
+  let headers = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      username,password
+    })
+  }
+  return (dispatch) => {
+    fetch(url,headers)
+    .then( (response) => response.json())
+    .then((json) => {
+      if(!json.error) {
+        dispatch(userLogin(json.user))
+        localStorage.setItem('token', json.token)
+        return json
+      } else {
+        return json
+      }
+    })
+    }
+
+}
+
 export function itemsAreLoading(bool) {
     return {
         type: 'ITEMS_ARE_LOADING',
@@ -246,4 +273,33 @@ export function signupUser(url, payload){
     .then( (response) => response.json())
     .then( (json) => dispatch(userLogin(json))
     )}
+}
+
+export function logoutUser(){
+  return {
+    type: 'USER_LOGOUT'
+  }
+}
+
+export function userLoggedIn(){
+  if (localStorage.token){
+    let headers = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': localStorage.token
+      }
+    }
+    return (dispatch) => {
+      fetch('http://localhost:3001/api/v1/authorize',headers)
+      .then( (res)=>res.json())
+      .then( (json) => {
+        if (json.id){
+          dispatch(userLogin(json))
+        }
+      })
+    }
+  } else {
+
+  }
 }

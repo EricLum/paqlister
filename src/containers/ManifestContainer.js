@@ -1,8 +1,7 @@
 import React from 'react'
-import {SideNav, Button, SideNavItem, Parallax} from 'react-materialize'
+import { Button} from 'react-materialize'
 import {Route, Switch, Link} from 'react-router-dom'
 import { connect } from 'react-redux'
-import {bindActionCreators} from 'redux'
 import { manifestPostData, getManifestData} from '../actions/actions'
 import ManifestNavbar from './ManifestNavbar'
 import ManifestContainerItem from './ManifestContainerItem'
@@ -11,19 +10,17 @@ import '../styles/ManifestContainer.css'
 
 class ManifestContainer extends React.Component {
 
-  constructor(props){
-    super(props)
-  }
-
   state = {
     title: '',
     limit: '',
     description: '',
-    user_id: 13
+    user_id: this.props.user.id
   }
 
   handleOnChange = (e) => {
-    this.state[e.target.name] = e.target.value
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   handleOnSave = (event) => {
@@ -33,12 +30,14 @@ class ManifestContainer extends React.Component {
       title: '',
       limit: '',
       description: '',
-      user_id: 13
+      user_id: this.props.user.id
     })
   }
 
   componentDidMount(){
    this.props.getManifestData('http://localhost:3001/api/v1/manifests')
+   console.log(this.props)
+
   }
 
   render(){
@@ -71,10 +70,10 @@ class ManifestContainer extends React.Component {
                      <input name='description' id='description' type='text' onChange={this.handleOnChange}></input>
                      <label for='description'>Description</label>
                    </div>
-                   <div className='input-field'>
+                   {/* <div className='input-field'>
                      <input type='text' id='user_id' name='user_id'></input>
                      <label for='user_id'>User_id_placeholder</label>
-                   </div>
+                   </div> */}
                    <div className='input-field'>
                      <Button>
                        <input type='submit' id='submit' name='submit'></input>

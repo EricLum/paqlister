@@ -1,13 +1,16 @@
 import React from 'react'
 import { Navbar, NavItem, Icon } from 'react-materialize'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import {logoutUser} from '../actions/actions'
 import {connect} from 'react-redux'
 
 class Navigation extends React.Component {
-  render(){
-    if (this.props.user.username){
 
-    }
+  handleLogOut = () => {
+    this.props.logoutUser()
+  }
+
+  render(){
     return (
 
           <div className="Navigation">
@@ -26,8 +29,8 @@ class Navigation extends React.Component {
               {this.props.user.username &&
                 <div>
                 <NavItem> {this.props.user.username} is logged in </NavItem>
-                <Link to='/'>
-                  <NavItem>Signout</NavItem>
+                <Link to ='/'>
+                  <NavItem onClick={this.handleLogOut}>Logout</NavItem>
                 </Link>
                 <Link to='/manifests'>
                   <NavItem><Icon>view_module</Icon></NavItem>
@@ -40,14 +43,6 @@ class Navigation extends React.Component {
       )
   }
 }
-// <Router>
-//   <Switch >
-{/* <Route path='/login'></Route>
-<Route path='/signup' ></Route>
-<Route path='/manifests'></Route>
-</Switch>
-
-</Router> */}
 
 let mapStateToProps = (state) => {
   return {
@@ -55,4 +50,4 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,)(Navigation)
+export default connect(mapStateToProps,{logoutUser})(Navigation)

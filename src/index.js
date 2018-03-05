@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux'
-import reducer from './reducers/reducer'
 import {store} from './store.js'
 
 ReactDOM.render(

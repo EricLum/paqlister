@@ -7,7 +7,7 @@ class LandingCards extends React.Component {
     return (
       <div className="landing">
         <Row>
-          <Col s={6} s={6} className='grid-example'>
+          <Col s={6} className='grid-example'>
             <Card className='brown darken-1' textClassName='white-text' title='Share your collections'>
               <div>
                 <p>Manage your life.</p><br></br>
@@ -15,7 +15,7 @@ class LandingCards extends React.Component {
               </div>
             </Card>
           </Col>
-          <Col s={6} s={6} className='grid-example'>
+          <Col s={6} className='grid-example'>
             <Card className='brown darken-1' textClassName='white-text' title='Track your stuff'>
                 <div>
                   <p>Save your collections. Manage your life.</p><br></br>
