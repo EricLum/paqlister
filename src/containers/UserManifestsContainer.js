@@ -92,7 +92,6 @@ let items ;
     return (
       <div>
         <div className="parentContainer">
-          <UserManifestsNavbar />
           <div>
              <div style={{height: '1080px', width: '1900px', padding: '10px'}}>
                {items}

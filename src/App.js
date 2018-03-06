@@ -31,8 +31,7 @@ const test = () => {
 
 const signup = () => {
   return (
-    <div>
-
+  <div>
     <Signup />
   </div>
   )
@@ -41,7 +40,6 @@ const signup = () => {
 const login = () => {
   return (
     <div>
-
       <Login />
     </div>
   )
@@ -55,6 +53,14 @@ const manifests = () => {
   )
 }
 
+const allmanifests = () => {
+  return (
+    <div>
+      <ManifestContainer showAll={true}/>
+    </div>
+  )
+}
+
 class App extends Component {
 
   componentDidMount(){
@@ -63,7 +69,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="App">
           <Navigation />
@@ -71,7 +76,8 @@ class App extends Component {
             <Route path='/test' render={test} />
             <Route path='/signup' render={signup} />
             <Route path='/login' render={login} />
-            <Route exact path='/manifests' render={manifests} />
+            <Route exact path='/manifests' component={manifests} />
+            <Route exact path='/allmanifests' component={allmanifests}  />
             <Route path={`/manifests/:manifestId`} component={UserManifestsContainer}/>
             <Route exact path='/' render={Home}/>
           </Switch>

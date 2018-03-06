@@ -120,6 +120,24 @@ export function getManifestData(url){
   }
 }
 
+export function getMyManifestData(url){
+  let headers = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': localStorage.token
+    }
+  }
+  return (dispatch) => {
+    fetch(url,headers)
+    .then( (response) => {
+      return response
+    }).then((response) => response.json())
+    .then( (json) => dispatch(loadInitialManifest(json)))
+  }
+}
+
 export function loadManifestItems(url, manifestId){
   let headers = {
     method: 'post',
