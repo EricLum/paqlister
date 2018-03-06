@@ -24,7 +24,7 @@ class ItemWrapper extends React.Component {
   }
 
   componentDidMount(){
-
+    console.log(this.props)
     if (this.props.positions[0]){
       this.setState({
         x: this.props.positions[0].left_position,
@@ -80,18 +80,16 @@ class ItemWrapper extends React.Component {
     return(
        <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
          <div className='box'>
-           <img className='no-drag' src={this.props.item.image} height='200px' width='200px'/>              <Card header={<CardTitle reveal  waves='light'/>}
-                        title={this.props.item.name}
-                        reveal={<div>
-                           ItemID: {this.props.item.id}<br></br>
-                           ManifestID: {this.props.manifestId}<br></br>
-                           Price: {this.props.item.price} <br></br>
-                           <Button onClick={this.handleDelete}>Delete</Button>
-                           </div>
-                          }
-                           >
-                        <p><a href="#">This is a link</a></p>
-                         </Card>
+           <img className='no-drag' src={this.props.item.image} height='200px' width='200px'/>
+           <Card header={<CardTitle reveal waves='light'/>} title={this.props.item.name}
+              reveal={
+                <div>
+                  ItemID: {this.props.item.id}<br></br>
+                  ManifestID: {this.props.manifestId}<br></br>
+                  Price: {this.props.item.price} <br></br>
+                  <Button onClick={this.handleDelete}>Delete</Button>
+                </div>}>
+           </Card>
          </div>
       </Draggable>)
   }

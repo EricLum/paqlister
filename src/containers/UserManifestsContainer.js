@@ -24,6 +24,7 @@ class UserManifestsContainer extends React.Component {
     //load all the initial items from state and their positions.
     this.props.loadManifestItems('http://localhost:3001/api/v1/manifests/getItems', this.props.match.params.manifestId)
     this.props.loadManifestItemPositions('http://localhost:3001/api/v1/manifestitems/getManifestItemsPositions', this.props.match.params.manifestId)
+    console.log(this.props)
   }
 
   handleAddItem = (e) => {

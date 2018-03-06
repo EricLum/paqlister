@@ -47,7 +47,6 @@ class ManifestContainer extends React.Component {
   }
 
   render(){
-
     const manifestContainers = this.props.manifests.map( (manifest) =>
       <div className='container'>
         <Link key={manifest.id} to={`/manifests/${manifest.id}`}>

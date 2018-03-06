@@ -33,16 +33,13 @@ export default function myReducer(
       return Object.assign({}, state, {user: {}})
     case 'DELETE_ITEM':
       // remove item from state
-      let filteredItems = state.items.slice()
-      let filteredItems2=filteredItems.filter((item) => {
+      let filteredItems=state.items.slice().filter((item) => {
         return item.id !== action.itemId
       })
-      debugger
-      let filteredManifestItems = state.items.slice()
-      let filteredManifestItems2 = filteredManifestItems.filter((mItem) => {
+      let filteredManifestItems = state.items.slice().filter((mItem) => {
         return mItem.item_id !== action.itemId
       })
-      return Object.assign({}, state, {items: filteredItems2}, {manifestItems: filteredManifestItems2})
+      return Object.assign({}, state, {items: filteredItems}, {manifestItems: filteredManifestItems})
     default:
       return state
   }

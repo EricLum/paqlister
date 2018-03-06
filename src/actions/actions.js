@@ -15,8 +15,30 @@ export function deleteItem(itemId){
   }
 }
 
+export function cloneManifest(manifestId){
+  let headers = {
+    'method': 'post',
+    'headers': {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': localStorage.token
+    },
+    body: JSON.stringify({
+      manifestId
+    })
+  }
+
+
+  return (dispatch) => {
+    fetch('http://localhost:3001/api/v1/cloneManifest',headers)
+    .then(
+      //
+    )
+  }
+}
+
 export function sendDeleteRequest(itemId){
-  
+
   let url = `http://localhost:3001/api/v1/items/${itemId}`
   let headers = {
     method: 'DELETE',
