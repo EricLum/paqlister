@@ -3,7 +3,8 @@ import '../styles/ItemWrapper.css'
 import Draggable from 'react-draggable'
 import { bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {saveManifestItemPosition} from '../actions/actions'
+import {Card, Button,CardTitle} from 'react-materialize'
+import {saveManifestItemPosition,sendDeleteRequest} from '../actions/actions'
 const BASE_URL = 'http://localhost:3001/api/v1/manifest_items/'
 
 
@@ -40,7 +41,10 @@ class ItemWrapper extends React.Component {
         y: this.props.positions[0].top_position
       }, this.forceUpdate())
     }
+  }
 
+  handleDelete=(e) =>{
+    this.props.sendDeleteRequest(this.props.item.id)
   }
 
   handleMouseUp = (e,ui) => {
@@ -60,11 +64,15 @@ class ItemWrapper extends React.Component {
       return(
          <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
            <div className='box partyMode'>
-             <img className='no-drag' src={this.props.item.image} height='200px' width='200px' alt='its a picture'/>
-             ItemName: {this.props.item.name} <br></br>
-             ItemID: {this.props.item.id}<br></br>
-             ManifestID: {this.props.manifestId}<br></br>
-             Price: {this.props.item.price} <br></br>
+             <img className='no-drag' src={this.props.item.image} height='200px' width='200px'/>
+              <Card header={<CardTitle reveal image={"img/office.jpg"}     waves='light'/>}
+             title="Card Title"
+             reveal={<div>
+                ItemID: {this.props.item.id}<br></br>
+                ManifestID: {this.props.manifestId}<br></br>
+                Price: {this.props.item.price} <br></br></div>}>
+             <p><a href="#">This is a link</a></p>
+              </Card>
            </div>
         </Draggable>)
       }
@@ -72,12 +80,18 @@ class ItemWrapper extends React.Component {
     return(
        <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>
          <div className='box'>
-           <img className='no-drag' src={this.props.item.image} height='200px' width='200px'/>
-           ItemName: {this.props.item.name} <br></br>
-           ItemID: {this.props.item.id}<br></br>
-           ManifestID: {this.props.manifestId}<br></br>
-           Price: {this.props.item.price} <br></br>
-
+           <img className='no-drag' src={this.props.item.image} height='200px' width='200px'/>              <Card header={<CardTitle reveal  waves='light'/>}
+                        title={this.props.item.name}
+                        reveal={<div>
+                           ItemID: {this.props.item.id}<br></br>
+                           ManifestID: {this.props.manifestId}<br></br>
+                           Price: {this.props.item.price} <br></br>
+                           <Button onClick={this.handleDelete}>Delete</Button>
+                           </div>
+                          }
+                           >
+                        <p><a href="#">This is a link</a></p>
+                         </Card>
          </div>
       </Draggable>)
   }
@@ -86,7 +100,8 @@ class ItemWrapper extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    saveManifestItemPosition
+    saveManifestItemPosition,
+    sendDeleteRequest
   }, dispatch)
 }
 

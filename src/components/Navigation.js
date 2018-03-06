@@ -31,7 +31,9 @@ class Navigation extends React.Component {
                 <Link to ='/'>
                   <NavItem >Home<Icon left>home</Icon></NavItem>
                 </Link>
-                <NavItem> Welcome {this.props.user.username}<Icon left>person</Icon></NavItem>
+                <Link to ='/'>
+                  <NavItem>{this.props.user.username}<Icon left>person</Icon></NavItem>
+                </Link>
                 <Link to ='/'>
                   <NavItem onClick={this.handleLogOut}>Logout<Icon left>exit_to_app</Icon></NavItem>
                 </Link>

@@ -8,6 +8,39 @@ export function addItem(item){
   }
 }
 
+export function deleteItem(itemId){
+  return {
+    type: 'DELETE_ITEM',
+    itemId
+  }
+}
+
+export function sendDeleteRequest(itemId){
+  
+  let url = `http://localhost:3001/api/v1/items/${itemId}`
+  let headers = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': localStorage.token
+    },
+    body: JSON.stringify({
+      itemId
+    })
+  }
+
+  return (dispatch) => {
+    fetch(url, headers)
+    .then( (res) => {
+        dispatch(deleteItem(itemId))
+        return res
+    }).then (
+      (res)=> res.json()
+    )
+  }
+}
+
 export function saveCollections(){
   return {
     type: 'SAVE_COLLECTION'
@@ -318,6 +351,8 @@ export function userLoggedIn(){
       })
     }
   } else {
-
+    return {
+      type: 'whatever'
+    }
   }
 }

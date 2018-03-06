@@ -31,6 +31,18 @@ export default function myReducer(
     case 'USER_LOGOUT':
       localStorage.removeItem('token')
       return Object.assign({}, state, {user: {}})
+    case 'DELETE_ITEM':
+      // remove item from state
+      let filteredItems = state.items.slice()
+      let filteredItems2=filteredItems.filter((item) => {
+        return item.id !== action.itemId
+      })
+      debugger
+      let filteredManifestItems = state.items.slice()
+      let filteredManifestItems2 = filteredManifestItems.filter((mItem) => {
+        return mItem.item_id !== action.itemId
+      })
+      return Object.assign({}, state, {items: filteredItems2}, {manifestItems: filteredManifestItems2})
     default:
       return state
   }
