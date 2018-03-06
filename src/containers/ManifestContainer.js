@@ -18,8 +18,11 @@ class ManifestContainer extends React.Component {
   }
 
   handleOnChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
+    e.persist()
+    this.setState((prevState) =>{
+      return {...prevState,
+        [e.target.name]: e.target.value
+      }
     })
   }
 
@@ -36,8 +39,6 @@ class ManifestContainer extends React.Component {
 
   componentDidMount(){
    this.props.getManifestData('http://localhost:3001/api/v1/manifests')
-   console.log(this.props)
-
   }
 
   render(){
@@ -50,10 +51,6 @@ class ManifestContainer extends React.Component {
 
     return (
       <div>
-        <ManifestNavbar />
-
-            <Switch>
-            <Route exact path='/manifests' render={ () => <div className='collectionsGrid'>
               {manifestContainers}
               <div className='input-field'>
                 <form onSubmit={this.handleOnSave}>
@@ -70,10 +67,7 @@ class ManifestContainer extends React.Component {
                      <input name='description' id='description' type='text' onChange={this.handleOnChange}></input>
                      <label for='description'>Description</label>
                    </div>
-                   {/* <div className='input-field'>
-                     <input type='text' id='user_id' name='user_id'></input>
-                     <label for='user_id'>User_id_placeholder</label>
-                   </div> */}
+        
                    <div className='input-field'>
                      <Button>
                        <input type='submit' id='submit' name='submit'></input>
@@ -82,12 +76,8 @@ class ManifestContainer extends React.Component {
                    </div>
                  </form>
               </div>
-            </div>} />
-            <Route path={`/manifests/:manifestId`}
-             component={UserManifestsContainer}/>
-          </Switch>
+            </div>
 
-        </div>
     )
   }
 }

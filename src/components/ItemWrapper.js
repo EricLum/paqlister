@@ -55,8 +55,7 @@ class ItemWrapper extends React.Component {
   }
 
   render (){
-    console.log(this.props.manifestItems)
-    console.log(this.props.positions[0])
+
     if(this.props.partyMode){
       return(
          <Draggable onDrag={this.handleDrag} onStop={this.handleMouseUp} bounds="parent"  position={{x: this.state.x, y: this.state.y}}>

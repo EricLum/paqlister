@@ -4,17 +4,17 @@ import Navigation from './components/Navigation'
 import Landing from './containers/Landing'
 import LandingCards from './components/LandingCards'
 import ManifestContainer from './containers/ManifestContainer'
+import UserManifestsContainer from './containers/UserManifestsContainer'
 import Signup from './containers/Signup'
 import Login from './containers/Login'
 import BasicLayout from './BasicLayout'
 import {connect} from 'react-redux'
 import { userLoggedIn } from './actions/actions'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, withRouter} from 'react-router-dom'
 
 const Home = () => {
   return (
     <div>
-      <Navigation />
       <Landing />
       <LandingCards />
     </div>
@@ -25,16 +25,14 @@ const test = () => {
   return (
     <div>
       <BasicLayout />
-
     </div>
   )
 }
 
 const signup = () => {
-  console.log('routing to signup')
   return (
     <div>
-    <Navigation />
+
     <Signup />
   </div>
   )
@@ -43,7 +41,7 @@ const signup = () => {
 const login = () => {
   return (
     <div>
-      <Navigation />
+
       <Login />
     </div>
   )
@@ -52,7 +50,6 @@ const login = () => {
 const manifests = () => {
   return (
     <div>
-      <Navigation />
       <ManifestContainer />
     </div>
   )
@@ -69,15 +66,15 @@ class App extends Component {
     console.log(this.props)
     return (
       <div className="App">
-        <Router>
+          <Navigation />
           <Switch>
             <Route path='/test' render={test} />
             <Route path='/signup' render={signup} />
             <Route path='/login' render={login} />
-            <Route path='/manifests' render={manifests} />
+            <Route exact path='/manifests' render={manifests} />
+            <Route path={`/manifests/:manifestId`} component={UserManifestsContainer}/>
             <Route exact path='/' render={Home}/>
           </Switch>
-        </Router>
       </div>
     );
   }
@@ -87,4 +84,4 @@ const mapStateToProps = (state) => {
   return {...state.manifestsReducer}
 }
 
-export default connect(mapStateToProps,{userLoggedIn})(App);
+export default withRouter(connect(mapStateToProps,{userLoggedIn})(App));

@@ -57,12 +57,17 @@ class UserManifestsContainer extends React.Component {
   }
 
   handleOnChange = (e) => {
-
-    this.setState({
-      formData: {
-        [e.target.name]: e.target.value
+    e.persist()
+    this.setState((prevState) =>
+    {
+      return {
+        ...prevState,
+        formData: {
+          ...prevState.formData,
+          [e.target.name]: e.target.value
+        }
       }
-    })
+    }, console.log(this.state.formData))
   }
 
   render(){

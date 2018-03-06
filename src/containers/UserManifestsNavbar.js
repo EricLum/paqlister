@@ -1,6 +1,7 @@
 import React from 'react'
 import {SideNav, SideNavItem, Button} from 'react-materialize'
-import { Link } from 'react-router-dom'
+import { Link, Route,Redirect } from 'react-router-dom'
+import ManifestContainer from './ManifestContainer'
 
 class UserManifestsNavbar extends React.Component {
   render (){
