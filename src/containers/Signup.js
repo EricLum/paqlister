@@ -13,7 +13,6 @@ class Signup extends React.Component {
   }
 
   handleOnChange = (e) => {
-    console.log(this.state)
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -25,11 +24,11 @@ class Signup extends React.Component {
       this.props.signupUser('http://localhost:3001/api/v1/users', this.state)
     } else {
       alert("password doesn't match password confirmation")
-      this.setState({
-        password: '',
-        passwordConfirmation: ''
-      })
     }
+    this.setState({
+      password: '',
+      passwordConfirmation: ''
+    })
   }
 
   render(){

@@ -344,7 +344,11 @@ export function signupUser(url, payload){
   return (dispatch) => {
     fetch(url,headers)
     .then( (response) => response.json())
-    .then( (json) => dispatch(userLogin(json))
+    .then( (json) =>{
+      dispatch(userLogin(json.user))
+      localStorage.setItem('token',json.token)
+      return json
+    }
     )}
 }
 

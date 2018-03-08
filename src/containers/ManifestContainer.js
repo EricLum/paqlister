@@ -38,7 +38,6 @@ class ManifestContainer extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.props)
    if (!this.props.showAll){
      this.props.getMyManifestData('http://localhost:3001/api/v1/mymanifests')
    } else {

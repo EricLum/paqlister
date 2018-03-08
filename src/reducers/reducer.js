@@ -27,6 +27,7 @@ export default function myReducer(
       curManifestItems.push(action.item)
       return Object.assign({}, state, {items: curManifestItems})
     case 'USER_LOGIN':
+      debugger
       return Object.assign({}, state, {user: action.user})
     case 'USER_LOGOUT':
       localStorage.removeItem('token')
