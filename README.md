@@ -28,7 +28,11 @@ npm start
  1. Sign up for an account
  2. Create a collection or copy a collection
  3. Engage danger mode if you dare!
- 4. [Demo Video](https://youtu.be/WzCUwVIFStI)
+
+ ## Demo Video
+ <a href="http://www.youtube.com/watch?feature=player_embedded&v=WzCUwVIFStI
+" target="_blank"><img src="http://img.youtube.com/vi/WzCUwVIFStI/0.jpg" 
+alt="Menagerie Demo" width="240" height="180" border="10" /></a>
  
  ## Tech and Framework info
  This project is built with React.JS and Ruby on Rails 5 API & PostgresSQL
